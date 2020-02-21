@@ -30,20 +30,18 @@ class SongsController < ApplicationController
     def update
         @song = Song.find(params[:id])
         if @song.update(song_params)
-            byebug
+            # byebug
             redirect_to @song
         else
-            byebug
+            # byebug
             render :edit
         end
     end
 
     def destroy
-        if @song.destroy
-            redirect_to root_path, :notice => "Your song has been deleted Successfully."
-        else
-            redirect_to @song
-        end
+        @song = Song.find(params[:id])
+        @song.destroy
+        redirect_to root_path
     end
 
     private

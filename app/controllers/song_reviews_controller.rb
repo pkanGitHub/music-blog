@@ -27,17 +27,20 @@ class SongReviewsController < ApplicationController
     end
     
     def show
-        @song_review = SongReview.find(params[:id])
         @song = Song.find(params[:id])
+        @song_review = @song.song_review.search_for_user_review(current_user)
     end
     
-    def destroy
-        if @song_review.destroy
-            redirect_to root_path, :notice => "Your song has been deleted Successfully."
-        else
-            redirect_to @song_review
-        end
-    end
+    # def destroy
+    #     @song_review = SongReview.find(params[:id])
+    #     @song_review.destroy
+    #     redirect_to root_path
+    #     # if @song_review.destroy
+    #     #     redirect_to root_path, :notice => "Your song has been deleted Successfully."
+    #     # else
+    #     #     redirect_to @song_review
+    #     # end
+    # end
 
     private
 
