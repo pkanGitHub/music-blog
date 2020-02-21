@@ -8,7 +8,9 @@ class User < ApplicationRecord
   has_many :song_reviews
   has_many :songs, through: :song_reviews
 
+  # validates :name, presence: true
   validates :username, presence: true
+  validates :username, uniqueness: true
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
