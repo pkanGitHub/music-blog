@@ -11,6 +11,7 @@ Language: <%= @song.language %><br>
 
 <%= link_to "Edit Review", edit_user_song_path(current_user, @song) %>
 <br>
+<%# with uncomment the commented line, will only destroy the review, but not the whole song_review page %>
 <%# if @song_review %>
 <%= link_to "Delete Review", user_song_path(current_user, @song), method: :delete %>
 <%#= link_to "Delete Review", user_song_song_review_path(current_user, @song_review), method: :delete %>
