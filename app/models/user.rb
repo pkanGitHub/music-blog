@@ -5,6 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook]
 
+  has_many :song_reviews
+  has_many :songs, through: :song_reviews
+
   validates :username, presence: true
 
   def self.from_omniauth(auth)

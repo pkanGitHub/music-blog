@@ -1,0 +1,14 @@
+<h1><%= @song.title %> </h1>
+
+Artist: <%= @song.artist_name%>
+<br>
+Genre: <%= @song.genre %><br>
+Language: <%= @song.language %><br>
+<a href="<%= @song.link %>" class="song_button" target="_blank"> Song Link: <%= @song.title %></a>
+
+<p>Review: <%= @song.reviews %></p>
+
+
+<%= button_to "Edit Review", edit_user_song_path(current_user, @song) %>
+
+<%= link_to "Back to the list", songs_path%>

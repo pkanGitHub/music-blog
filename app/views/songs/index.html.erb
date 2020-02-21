@@ -1,0 +1,9 @@
+<h1>All Songs Reviewed</h1>
+
+<%= link_to "Create a Review", new_song_path %>
+
+<br><br>
+
+<% @songs.each do |song|%>
+    <%= link_to song.title, user_song_path(current_user, song) %> by <%= song.artist_name%><br>
+<% end %>
