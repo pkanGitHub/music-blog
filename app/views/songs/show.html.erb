@@ -6,10 +6,11 @@ Genre: <%= @song.genre %><br>
 Language: <%= @song.language %><br>
 <a href="<%= @song.link %>" target="_blank"> <%= @song.title %> Video</a>
 
-<p>Review: <%= @song.song_reviews %></p>
+<p>Review: <%= @song.song_reviews.where(user: current_user).limit(1).first.review %></p>
 
 
-<%= button_to "Edit Review", edit_user_song_path(current_user, @song) %>
+<%= link_to "Edit Review", edit_user_song_path(current_user, @song) %>
+<br>
 
 <%= link_to "Back to the list", songs_path %>
 

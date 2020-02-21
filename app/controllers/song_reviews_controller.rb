@@ -1,4 +1,4 @@
-class SongReviewController < ApplicationController
+class SongReviewsController < ApplicationController
 
     def new
         @song_review = SongReview.new
