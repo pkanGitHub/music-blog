@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
     #     # byebug
     # end
 
+
     protected
 
     def configure_permitted_parameters

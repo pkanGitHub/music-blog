@@ -1,16 +1,16 @@
 class SongsController < ApplicationController
 
     def index
-        @songs = Song.all
+        @songs = current_user.songs
     end
 
     def new
-        @song = Song.new
+        @song = current_user.songs.new
     end
 
     def create
         # byebug
-        @song = Song.new(song_params)
+        @song = current_user.songs.new(song_params)
         if @song.save
             redirect_to songs_path
         else
@@ -19,16 +19,17 @@ class SongsController < ApplicationController
     end
 
     def show
-        @song = Song.find(params[:id])
-        # p "ID: #{song.id}"
+        @song = current_user.songs.find(params[:id])
+    
     end
 
     def edit
-        @song = Song.find(params[:id])
+        @song = current_user.songs.find(params[:id])
+        # if current_user 
     end
 
     def update
-        @song = Song.find(params[:id])
+        @song = current_user.songs.find(params[:id])
         if @song.update(song_params)
             # byebug
             redirect_to @song
@@ -39,7 +40,7 @@ class SongsController < ApplicationController
     end
 
     def destroy
-        @song = Song.find(params[:id])
+        @song = current_user.songs.find(params[:id])
         @song.destroy
         redirect_to root_path
     end

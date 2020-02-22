@@ -31,6 +31,7 @@ class SongReviewsController < ApplicationController
         @song_review = @song.song_review.search_for_user_review(current_user)
     end
     
+    # This is for if I only want to destroy review section
     # def destroy
     #     @song_review = SongReview.find(params[:id])
     #     @song_review.destroy
