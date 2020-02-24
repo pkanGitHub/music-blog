@@ -1,3 +1,9 @@
+<div id='navbar'>
+    <%= link_to 'All Songs', songs_path %>
+    <p><%#= user_songs_path(current_user) %></p>
+    <%#= link_to 'User Songs', user_songs_path(current_user) %>
+</div>
+
 <h1><%= @song.title %> </h1>
 
 Artist: <%= @song.artist_name%>
@@ -5,11 +11,22 @@ Artist: <%= @song.artist_name%>
 Genre: <%= @song.genre %><br>
 Language: <%= @song.language %><br>
 <a href="<%= @song.link %>" target="_blank"> <%= @song.title %> Video</a>
+<% if @song.user_id == current_user.id %>
+    <%= button_to "Edit Song Info", edit_song_path(@song), method: :get %>
+<% end %>
+<p>Review: </p>
+<% @song.song_reviews.each do |review| %>
+    <div><%= review.review %></div>
+    <% if review.user == current_user %>    
+        <%= button_to "Edit Review", edit_song_song_review_path(@song, review), method: :get %>
+        <%= button_to "Delete Review", song_song_review_path(@song, review), method: :delete %>
+    <% end %>
+<% end %>
 
-<p>Review: <%= @song_review.try(:review) %></p>
+<%= link_to "Add Review", new_song_song_review_path(@song) %>
 
 
-<%= link_to "Edit Review", edit_user_song_path(current_user, @song) %>
+<%#= link_to "Edit Review", edit_song_path(@song) %>
 <br>
 <%# with uncomment the commented line, will only destroy the review, but not the whole song_review page %>
 <%# if @song_review %>

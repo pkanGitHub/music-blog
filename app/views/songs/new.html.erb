@@ -1,20 +1,4 @@
 <h1>A New Song Review</h1>
 <%# song#new %>
 
-<%= form_for @song, url: songs_path do |f| %>
-<p>Artist Name: <%= f.text_field :artist_name %></p>
-<p>Song Name: <%= f.text_field :title %></p>
-<p>Genre: <%= f.text_field :genre %></p>
-<p>Language: <%= f.text_field :language %></p>
-<h3>Paste the link here if you have it</h3>
-<p>Song URL: <%= f.text_field :link %></p>
-<p>
-    <%= f.fields_for :song_reviews, @song.song_reviews.build(user: current_user) do |r| %>
-    <%= r.hidden_field :user_id %>
-    Song Review: <%= r.text_area :review %>
-    <% end %>
-</p>
-    <%= f.submit %>
-<% end  %>
-
-<%#= render partial: "form", locals: (song: @song) %>
+<%= render partial: "form", locals: {song: @song, url: songs_path, review: true} %>

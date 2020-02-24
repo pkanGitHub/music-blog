@@ -1,0 +1,4 @@
+<p> <%= @song_review%> </p>
+<%= render partial: "form", locals: {song_review: @song_review, song: @song, url: song_song_review_path(@song, @song_review)} %>
+
+ <%# link_to "Update", user_song_path(current_user)%>

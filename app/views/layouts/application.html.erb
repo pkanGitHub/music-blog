@@ -10,10 +10,7 @@
   </head>
 
   <body>
-  <%# if user_signed_in? %>
-  <%#= link_to "My List", songs_path %>
-  <%# end %>
-  <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+    <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
 
     <%= yield %>
   </body>

@@ -1,5 +1,5 @@
 class Song < ApplicationRecord
-    has_many :song_reviews, dependent: :destroy
+    has_many :song_reviews
     has_many :users, through: :song_reviews
 
     accepts_nested_attributes_for :song_reviews
@@ -12,4 +12,12 @@ class Song < ApplicationRecord
     validates :genre, presence: true
     # validates_format_of :link, :with =>  allow_blank: true
 
+
+    #scope :artist, ->(artist) { where(artist_name: artist) }
+    def self.filter_for_artist(artist)
+        Song.where(artist_name: artist)
+    end
+
+    def self.filter_for_user()
+    end
 end

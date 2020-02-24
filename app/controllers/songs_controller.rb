@@ -1,7 +1,16 @@
 class SongsController < ApplicationController
 
+
     def index
-        @songs = Song.all
+        my_songs = params[:my_songs]
+        artist = params[:artist_name]
+        if artist && artist != ''
+            @songs = Song.filter_for_artist(artist)
+        elsif my_songs
+            @songs = current_user.songs
+        else
+            @songs = Song.all
+        end
     end
 
     def new
@@ -42,12 +51,13 @@ class SongsController < ApplicationController
     def destroy
         @song = Song.find(params[:id])
         @song.destroy
+        
         redirect_to root_path
     end
 
     private
 
     def song_params
-        params.require(:song).permit(:artist_name, :title, :genre, :language, :link, song_reviews_attributes: [:review, :user_id, :id]) 
+        params.require(:song).permit(:artist_name, :title, :genre, :language, :link, :user_id, song_reviews_attributes: [:review, :user_id, :id]) 
     end
 end
