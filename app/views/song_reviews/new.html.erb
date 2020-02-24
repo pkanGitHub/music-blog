@@ -1,1 +1,1 @@
-<%= render partial: "form", locals: (song_review: @song_review) %>
+<%= render partial: "form", locals: {song_review: @song_review, song: @song, url: song_song_reviews_path(@song)} %>

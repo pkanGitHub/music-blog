@@ -12,4 +12,12 @@ class Song < ApplicationRecord
     validates :genre, presence: true
     # validates_format_of :link, :with =>  allow_blank: true
 
+
+    #scope :artist, ->(artist) { where(artist_name: artist) }
+    def self.filter_for_artist(artist)
+        Song.where(artist_name: artist)
+    end
+
+    def self.filter_for_user()
+    end
 end

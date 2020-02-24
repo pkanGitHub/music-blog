@@ -1,5 +1,7 @@
-<%= form_for song_review, url: edit_user_song_song_review_path(song_review) do |f| %>
-  <%= f.hidden_field :user_id %>
-  <%= f.hidden_field :id %>
-  Song Review: <%= f.text_area :review %>
+<%= render 'shared/error_messages', object: song_review %>
+<%= form_for song_review, url: url do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :song_id, value: song.id %>
+  Song Review: <%= f.text_area :review %><br>
+  <%= f.submit %>
 <% end %>
