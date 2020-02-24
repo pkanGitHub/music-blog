@@ -3,10 +3,11 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :songs, only: [:index, :show, :new, :edit] do
-      resources :song_reviews
+      resources :song_reviews, only: [:edit, :show]
     end
   end
 
+  resources :song_reviews, only: [:index]
   resources :songs, only: [:index, :new, :create, :edit, :update, :show]
 
   root 'songs#index'

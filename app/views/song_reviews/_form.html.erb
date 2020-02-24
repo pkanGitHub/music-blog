@@ -1,0 +1,5 @@
+<%= form_for song_review, url: edit_user_song_song_review_path(song_review) do |f| %>
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :id %>
+  Song Review: <%= f.text_area :review %>
+<% end %>

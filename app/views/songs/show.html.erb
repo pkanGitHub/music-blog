@@ -1,3 +1,9 @@
+<div id='navbar'>
+    <%= link_to 'All Songs', songs_path %>
+    <p><%= user_songs_path(current_user) %></p>
+    <%= link_to 'User Songs', user_songs_path(current_user) %>
+</div>
+
 <h1><%= @song.title %> </h1>
 
 Artist: <%= @song.artist_name%>
@@ -6,10 +12,16 @@ Genre: <%= @song.genre %><br>
 Language: <%= @song.language %><br>
 <a href="<%= @song.link %>" target="_blank"> <%= @song.title %> Video</a>
 
-<p>Review: <%= @song.song_reviews.where(user: current_user).limit(1).first.review %></p>
+<p>Review: </p>
+<% @song.song_reviews.each do |review| %>
+    <div><%= review.review %></div>
+    <% if review.user == current_user %>    
+        <%= button_to "Edit Review", edit_user_song_song_review_path(current_user, @song, review), method: :get %>
+    <% end %>
+<% end %>
 
 
-<%= link_to "Edit Review", edit_user_song_path(current_user, @song) %>
+<%#= link_to "Edit Review", edit_user_song_path(current_user, @song) %>
 <br>
 
 <%= link_to "Back to the list", songs_path %>

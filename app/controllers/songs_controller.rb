@@ -1,7 +1,10 @@
 class SongsController < ApplicationController
 
+
     def index
-        @songs = Song.all
+        user = params[:user_id]
+        @songs = user ? current_user.songs : Song.all
+        # @songs = Song.all
     end
 
     def new
