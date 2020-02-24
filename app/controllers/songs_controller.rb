@@ -21,8 +21,9 @@ class SongsController < ApplicationController
         # byebug
         @song = Song.new(song_params)
         if @song.save
-            redirect_to songs_path
+            redirect_to songs_path, notice: "Song was created successfully"
         else
+            flash[:alert] = "Song already exist!"
             render :new
         end
     end
@@ -41,9 +42,10 @@ class SongsController < ApplicationController
         @song = Song.find(params[:id])
         if @song.update(song_params)
             # byebug
-            redirect_to @song
+            redirect_to @song, notice: "The song info has been updated successfully."
         else
             # byebug
+            Flash[:alert] = "The song was NOT updated successfully"
             render :edit
         end
     end
@@ -52,7 +54,7 @@ class SongsController < ApplicationController
         @song = Song.find(params[:id])
         @song.destroy
         
-        redirect_to root_path
+        redirect_to root_path, notice: "The song has been successfully deleted"
     end
 
     private

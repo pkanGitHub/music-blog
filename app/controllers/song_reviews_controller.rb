@@ -9,9 +9,10 @@ class SongReviewsController < ApplicationController
         @song = Song.find(params[:song_id])
         @song_review = SongReview.new(song_review_params)
         if @song_review.save
-            redirect_to @song_review.song
+            redirect_to @song_review.song, notice: "review created successfully."
         else
-            puts ("THIS IS THE SONG: #{@song.id}")
+            # puts ("THIS IS THE SONG: #{@song.id}")
+            flash[:alert] = "Review was not created successfully."
             render :new
         end
     end
@@ -25,8 +26,9 @@ class SongReviewsController < ApplicationController
         @song_review = SongReview.find(params[:id])
         @song = @song_review.song
         if @song_review.update(song_review_params)
-            redirect_to song_path(@song)
+            redirect_to song_path(@song), notice: "review has been updated successfully."
         else
+            flash[:alert] = "review was NOT updated successfully."
             render :edit
         end
     end
@@ -39,9 +41,9 @@ class SongReviewsController < ApplicationController
     def destroy
         @song_review = SongReview.find(params[:id])
         if @song_review.destroy
-            redirect_to root_path, :notice => "Your song has been deleted Successfully."
+            redirect_to root_path, :notice => "Your song has been deleted successfully."
         else
-            flash[:notice] = "warning"
+            flash[:notice] = "The song was NOT successfully deleted."
             redirect_to @song_review.song
         end
     end

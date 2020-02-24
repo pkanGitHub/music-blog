@@ -1,4 +1,4 @@
 <h1>Edit the Review</h1>
-<%# song#new %>
 
 <%= render partial: "form", locals: {song: @song, url: song_path(@song), review: false} %>
+<%= link_to "Go back", song_path(@song)%>

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # end
 
   # resources :song_reviews, only: [:index, :update, :create, :new]
-  resources :songs, only: [:index, :new, :create, :edit, :update, :show] do
+  resources :songs, only: [:index, :new, :create, :edit, :update, :show, :destroy] do
     resources :song_reviews, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 
