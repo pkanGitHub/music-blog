@@ -62,3 +62,7 @@ gem "omniauth-facebook", "~> 6.0"
 gem "dotenv-rails", "~> 2.7"
 
 gem "omniauth", "~> 1.9"
+
+gem "bootstrap", "~> 4.4.1"
+
+gem "jquery-rails", "~> 4.3"

@@ -2,12 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :users #do
-    # resources :songs, only: [:index, :show, :new, :edit] do
-    #   resources :song_reviews, only: [:edit, :update, :show, :new, :create]
-    # end
-  # end
-
-  # resources :song_reviews, only: [:index, :update, :create, :new]
+  
   resources :songs, only: [:index, :new, :create, :edit, :update, :show, :destroy] do
     resources :song_reviews, only: [:index, :new, :create, :edit, :update, :destroy]
   end
