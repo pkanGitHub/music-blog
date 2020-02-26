@@ -1,24 +1,22 @@
-~~~~# README
+# MusicRev
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A web app that allows users to create songs(if haven't been created) and write reviews in each song. 
 
-Things you may want to cover:
+## Getting Started
+```
+  bundle install
+  rails db:migrate
+  rails s
+```
 
-* Ruby version
+## Built With
 
-* System dependencies
+* Ruby on Rails
+  
+* Devise
+* Omniauth
+* Omniauth Facebook
+* Bootstrap 4
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## License
+This project is licensed under the MIT License
