@@ -10,7 +10,7 @@
     <p>
         <%= f.fields_for :song_reviews, @song.song_reviews.build(user: current_user) do |r| %>
         <%= r.hidden_field :user_id %>
-        Song Review: <%= r.text_area :review %>
+        Song Review: <br><%= r.text_area :review %>
         <% end %>
     </p>
   <% end %>

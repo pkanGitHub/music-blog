@@ -1,4 +1,7 @@
+<div class="container">
+<br>
 <h3>A New Song Review</h3>
-<%# song#new %>
-
-<%= render partial: "form", locals: {song: @song, url: songs_path, review: true} %>
+<hr>
+<%= render partial: "form", locals: {song: @song, url: songs_path, review: true} %> <br>
+<%= link_to "Go back", songs_path%>
+</div>

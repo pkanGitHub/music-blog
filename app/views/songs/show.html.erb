@@ -1,26 +1,27 @@
-<div id='navbar'>
-    <%= link_to 'All Songs', songs_path %>
-</div>
-
-<h1><%= @song.title %> </h1>
-
-Artist: <%= @song.artist_name%><br>
-Genre: <%= @song.genre %><br>
-Language: <%= @song.language %><br>
-<a href="<%= @song.link %>" target="_blank"> <%= @song.title %> Video</a>
-<% if @song.user_id == current_user.id %>
-    <%= button_to "Edit Song Info", edit_song_path(@song), method: :get %>
-    <%= button_to "Delete Song", song_path(@song), method: :delete %>
-<% end %>
-<p>Review: </p>
-<% @song.song_reviews.each do |review| %>
-    <div><%= review.review %></div>
-    <% if review.user == current_user %>    
-        <%= button_to "Edit Review", edit_song_song_review_path(@song, review), method: :get %>
-        <%= button_to "Delete Review", song_song_review_path(@song, review), method: :delete %>
+<div class="container"><br>
+    <h3><%= @song.title %> </h3><br>
+    Artist: <%= @song.artist_name%><br>
+    Genre: <%= @song.genre %><br>
+    Language: <%= @song.language %><br>
+    <a href="<%= @song.link %>" target="_blank"> <%= @song.title %> Video</a> <br><br>
+    <% if @song.user_id == current_user.id %>
+        <%= button_to "Edit Song Info", edit_song_path(@song), method: :get %> <br>
+        <%= button_to "Delete Song", song_path(@song), method: :delete %>
     <% end %>
-<% end %>
-
-<%= link_to "Add Review", new_song_song_review_path(@song) %>
-<br><br>
-<%= link_to "Back to the list", songs_path %>
+    <hr>
+    <ul class="list-group">
+    <%= link_to "Add Review", new_song_song_review_path(@song) %> <br>
+    <%#= link_to "Back to the list", songs_path %>
+    <p>Reviews: </p>
+        <% @song.song_reviews.each do |review| %>
+        <%= review.user.username %>: <br>
+        <li class="list-group-item">
+            <%= review.review %>
+        </li><br>
+            <% if review.user == current_user %>    
+                <%= button_to "Edit Review", edit_song_song_review_path(@song, review), method: :get %> <br>
+                <%= button_to "Delete Review", song_song_review_path(@song, review), method: :delete %> <br>
+            <% end %>
+        <% end %>
+    </ul>
+</div>

@@ -2,6 +2,7 @@
 <%= form_for song_review, url: url do |f| %>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :song_id, value: song.id %>
-  Song Review: <%= f.text_area :review %><br>
+  Song Review: <br>
+  <%= f.text_area :review %><br><br>
   <%= f.submit %>
 <% end %>
