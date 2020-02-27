@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-
+    before_action :set_song, only: [:show, :edit, :update, :destroy]
 
     def index
         my_songs = params[:my_songs]
@@ -23,41 +23,41 @@ class SongsController < ApplicationController
         if @song.save
             redirect_to songs_path, notice: "Song was created successfully"
         else
-            flash[:alert] = "Song already exist!"
+            flash.now[:alert] = "Song already exist!"
             render :new
         end
     end
 
     def show
-        @song = Song.find(params[:id])
 
     end
 
     def edit
-        @song = Song.find(params[:id])
-        # if current_user 
+
     end
 
     def update
-        @song = Song.find(params[:id])
         if @song.update(song_params)
             # byebug
             redirect_to @song, notice: "The song info has been updated successfully."
         else
             # byebug
-            Flash[:alert] = "The song was NOT updated successfully"
+            flash.now[:alert] = "The song was NOT updated successfully"
             render :edit
         end
     end
 
     def destroy
-        @song = Song.find(params[:id])
         @song.destroy
         
         redirect_to root_path, notice: "The song has been successfully deleted"
     end
 
     private
+
+    def set_song
+        @song = Song.find(params[:id])
+    end
 
     def song_params
         params.require(:song).permit(:artist_name, :title, :genre, :language, :link, :user_id, song_reviews_attributes: [:review, :user_id, :id]) 

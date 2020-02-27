@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :users #do
   
-  resources :songs, only: [:index, :new, :create, :edit, :update, :show, :destroy] do
+  resources :songs do
     resources :song_reviews, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 
