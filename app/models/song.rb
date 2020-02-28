@@ -17,4 +17,8 @@ class Song < ApplicationRecord
     def self.filter_for_artist(artist)
         Song.where(artist_name: artist)
     end
+    
+    def self.filter_by_genre(genre)
+        Song.where(genre: genre)
+    end
 end

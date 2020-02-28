@@ -4,10 +4,15 @@ class SongsController < ApplicationController
     def index
         my_songs = params[:my_songs]
         artist = params[:artist_name]
-        if artist && artist != ''
+        # set_find_artist_and_my_songs
+        genre = params[:genre]
+
+        if artist && artist != '' 
             @songs = Song.filter_for_artist(artist)
         elsif my_songs
             @songs = current_user.songs
+        elsif genre
+            @songs = Song.filter_by_genre(genre)
         else
             @songs = Song.all
         end
@@ -58,6 +63,18 @@ class SongsController < ApplicationController
     def set_song
         @song = Song.find(params[:id])
     end
+
+    # def set_find_artist_and_my_songs
+    #     my_songs = params[:my_songs]
+    #     artist = params[:artist_name]
+    #     if artist && artist != '' 
+    #         @songs = Song.filter_for_artist(artist)
+    #     elsif my_songs
+    #         @songs = current_user.songs
+    #     else
+    #         @songs = Song.all
+    #     end
+    # end
 
     def song_params
         params.require(:song).permit(:artist_name, :title, :genre, :language, :link, :user_id, song_reviews_attributes: [:review, :user_id, :id]) 
